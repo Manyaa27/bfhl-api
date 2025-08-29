@@ -1,0 +1,18 @@
+{
+  "name": "bfhl-api",
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "body-parser": "^2.2.0",
+    "cors": "^2.8.5",
+    "express": "^4.21.2"
+  },
+  "main": "index.js",
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "A REST API built with **Node.js + Express** for the BFHL assignment.  \r It processes an input array and returns odd numbers, even numbers, alphabets (uppercase), special characters, sum of numbers, and a custom concatenated string."
+}

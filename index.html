@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BFHL API Test | MANYA YADAV | 22BCT0189</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: linear-gradient(to right, rgb(229, 32, 32),rgb(187, 167, 167));
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .container {
+      background: #ffffff;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0px 4px 12px rgba(0,0,0,0.2);
+      width: 400px;
+      text-align: center;
+    }
+
+    h2 {
+      color: #333;
+      margin-bottom: 15px;
+    }
+
+    form {
+      margin-bottom: 20px;
+    }
+
+    input[type="text"] {
+      width: 80%;
+      padding: 10px;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+      font-size: 14px;
+    }
+
+    button {
+      padding: 10px 15px;
+      margin-top: 10px;
+      border: none;
+      border-radius: 6px;
+      background: #4CAF50;
+      color: white;
+      font-size: 14px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    button:hover {
+      background: #45a049;
+    }
+
+    h3 {
+      margin-top: 20px;
+      color: #444;
+    }
+
+    pre {
+      text-align: left;
+      background: #f4f4f4;
+      padding: 15px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      max-height: 250px;
+      overflow-y: auto;
+      font-size: 13px;
+      color: #333;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2> BFHL API Test | MANYA YADAV | 22BCT0189</h2>
+    <form id="dataForm">
+      <input type="text" id="dataInput" placeholder='Enter values like ["a","1","b"]'>
+      <br>
+      <button type="submit">Send</button>
+    </form>
+
+    <h3>Response:</h3>
+    <pre id="response"></pre>
+  </div>
+
+  <script>
+    document.getElementById("dataForm").addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const input = document.getElementById("dataInput").value;
+      let parsedData;
+
+      try {
+        parsedData = JSON.parse(input);
+      } catch (err) {
+        document.getElementById("response").textContent = " Invalid JSON input";
+        return;
+      }
+
+      try {
+        const res = await fetch("/bfhl", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ data: parsedData }),
+        });
+
+        const result = await res.json();
+        document.getElementById("response").textContent = JSON.stringify(result, null, 2);
+      } catch (err) {
+        document.getElementById("response").textContent = " Error: " + err.message;
+      }
+    });
+  </script>
+</body>
+</html>
